@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabiat Mo'jizalari</title>
+    <style>
+        /* Umumiy uslublar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f7f5;
+            color: #2c3e50;
+        }
+
+        /* Navigatsiya */
+        header {
+            background-color: rgba(46, 125, 50, 0.95);
+            color: white;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #a5d6a7;
+        }
+
+        /* Slayder / Qahramon qismi */
+        .hero {
+            margin-top: 60px;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Unsplash bepul tabiat rasmlari */
+        .slide-1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600'); }
+        .slide-2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600'); }
+        .slide-3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600'); }
+
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        /* Asosiy bloklar */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        /* Ekologiya bo'limi */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        /* Interaktiv Savol-javob */
+        .quiz-box {
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 25px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .quiz-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .quiz-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .quiz-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        #quiz-result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigatsiya paneli -->
+    <header>
+        <h1>🌿 Tabiat Dunyosi</h1>
+        <nav>
+            <a href="#home">Bosh sahifa</a>
+            <a href="#ecosystem">Ekotizim</a>
+            <a href="#quiz">Interaktiv Test</a>
+        </nav>
+    </header>
+
+    <!-- Bosh sahifa slayderi -->
+    <section id="home" class="hero">
+        <div class="slide slide-1 active">
+            <h2>Yashil O'rmonlar</h2>
+            <p>O'rmonlar — sayyoramizning eng toza o'pkaridir.</p>
+        </div>
+        <div class="slide slide-2">
+            <h2>Musaffo Suvlar</h2>
+            <p>Har bir tomchi suvda hayot nafasi yashiringan.</p>
+        </div>
+        <div class="slide slide-3">
+            <h2>Muazzam Tog'lar</h2>
+            <p>Tog'lar tabiatning salobati va mustahkamligidir.</p>
+        </div>
+    </section>
+
+    <!-- Asosiy kontent -->
+    <main class="container">
+        
+        <!-- Ekotizim bo'limi -->
+        <section id="ecosystem">
+            <h2 class="section-title">Ekotizim turlari</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>O'simliklar dunyosi</h3>
+                        <p>O'simliklar quyosh nurini energiyaga aylantirib, barcha jonzotlarni kislorod va ozuqa bilan ta'minlaydi.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Hayvonot olami</h3>
+                        <p>Yovvoyi tabiat va hayvonlar biologik muvozanatni saqlashda juda muhim zanjir hisoblanadi.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Suv havzalari</h3>
+                        <p>Okean va daryolar iqlimni boshqaradi va millionlab ajoyib mavjudotlarga boshpana beradi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interaktiv Savol-javob bo'limi -->
+        <section id="quiz">
+            <h2 class="section-title">Bilimingizni sinang</h2>
+            <div class="quiz-box">
+                <h3>Savol: Sayyoramizda eng ko'p kislorod ishlab chiqaradigan manba nima?</h3>
+                <button class="quiz-btn" onclick="checkAnswer(false)">A) Cho'llar</button>
+                <button class="quiz-btn" onclick="checkAnswer(true)">B) Okean va O'rmonlar</button>
+                <button class="quiz-btn" onclick="checkAnswer(false)">C) Shaharlar</button>
+                <p id="quiz-result"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tabiatni Asraylik. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- JavaScript qismi -->
+    <script>
+        // 1. Slayder funksiyasi
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Har 4 soniyada rasmni avtomatik o'zgartirish
+        setInterval(nextSlide, 4000);
+
+        // 2. Interaktiv test funksiyasi
+        function checkAnswer(isCorrect) {
+            const resultText = document.getElementById('quiz-result');
+            if (isCorrect) {
+                resultText.textContent = "✅ To'g'ri! Okean daryolari (planktonlar) va yashil o'rmonlar eng ko'p kislorod manbaidir.";
+                resultText.style.color = "#1b5e20";
+            } else {
+                resultText.textContent = "❌ Noto'g'ri. Qayta urinib ko'ring!";
+                resultText.style.color = "#b71c1c";
+            }
+        }
+    </script>
+</body>
+</html>
